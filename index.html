@@ -11,10 +11,12 @@
   <a-scene vr-mode-ui="enabled: false">
     <a-sky color="#000000"></a-sky>
     <a-light type="ambient" color="white" position="0 1 0" intensity="1.8"></a-light>
-  <a-assets>
+  
+    <a-assets>
        <a-asset-item id="test" src="https://cdn.jsdelivr.net/gh/jacksonkoh8/vr-test@accdde37f8d9ea2227d3066e85a3ad85e4b75f05/test3.gltf"></a-asset-item>
     </a-assets>
-  <a-entity gltf-model="#test" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity> 
+  
+    <a-entity gltf-model="#test" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity> 
      
 <!--     <script>
     AFRAME.registerComponent('log-rotation', {
@@ -36,7 +38,7 @@
 
   </a-scene>
   
-      <script>
+  <script>
     // Wait for the scene to be fully loaded
     document.querySelector('a-scene').addEventListener('loaded', function () {
       // Get the camera entity
@@ -46,7 +48,7 @@
     });
   </script> 
   
-   <div id="buttons">
+  <div id="buttons">
     <label for="camera-positions">Choose Seat:</label>
     <select id="camera-positions">
       <option value="0 8 10,-50 0 0">Top View</option>
@@ -57,7 +59,7 @@
     <button onclick="changeCameraPosition()">Set</button>
   </div>
   
-  <script>
+ <script>
     function changeCameraPosition() {
       // Get the selected option
       var select = document.getElementById('camera-positions');
@@ -83,10 +85,10 @@
       cameraEl.setAttribute('look-controls', '')
     }
   </script>
-  
-</body>
 
+</body>
 </html>
+      <!-- why button doesn't show up on phone cause of VR mode? -->
       <!-- add static planes in walls -->
       <!-- add body to camera to avoid passing through walls -->
       <!-- add alert for instructions -->
