@@ -1,41 +1,93 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics/Biology Lab Layout</title>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
 
-<!-- repo currently public to allow for github asset fetch in code pen -->
+<body>
+  <a-scene vr-mode-ui="enabled: false">
+    <a-sky color="#000000"></a-sky>
+    <a-light type="ambient" color="white" position="0 1 0" intensity="1.8"></a-light>
+  <a-assets>
+       <a-asset-item id="test" src="https://cdn.jsdelivr.net/gh/jacksonkoh8/vr-test@accdde37f8d9ea2227d3066e85a3ad85e4b75f05/test3.gltf"></a-asset-item>
+    </a-assets>
+  <a-entity gltf-model="#test" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity> 
+     
+<!--     <script>
+    AFRAME.registerComponent('log-rotation', {
+      tick: function () {
+        // Get the rotation of the entity the component is attached to
+        var position = this.el.getAttribute('position');
+        console.log('Camera position:', position);
+        var rotation = this.el.getAttribute('rotation');
+        console.log('Camera rotation:', rotation);
+      }
+    });
+    </script> -->
 
-  <body>
-    <a-scene>
-      <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-      <a-sky color="#000000"></a-sky>
-
-      <a-assets>
-          <a-asset-item id="test" src="test3.gltf"></a-asset-item>
-      </a-assets>
-
-      <a-entity 
-        gltf-model="#test" 
-        position="0 0 0" 
-        rotation="0 0 0" 
-        scale="2 2 2">
+<!--cannot use rotation directly together with look-controls-->
+    <a-entity id="cameraRig" position="0 8 10" rotation="-50 0 0">
+      <a-entity id="camera" camera spectator="false" look-controls wasd-controls="acceleration:100" log-rotation>
       </a-entity>
+    </a-entity>
 
-      <a-entity camera spectator="true" look-controls wasd-controls="acceleration:100" position="0 1.6 0" ></a-entity>
+  </a-scene>
+  
+      <script>
+    // Wait for the scene to be fully loaded
+    document.querySelector('a-scene').addEventListener('loaded', function () {
+      // Get the camera entity
+      var cameraEl = document.getElementById('camera');
+      // Set the initial rotation
+      cameraEl.setAttribute('rotation', '0 0 0');
+    });
+  </script> 
+  
+   <div id="buttons">
+    <label for="camera-positions">Choose Seat:</label>
+    <select id="camera-positions">
+      <option value="0 8 10,-50 0 0">Top View</option>
+      <option value="-5.16 1.7 -4.7,0 121 0">1</option>
+      <option value="-2.88 1.7 -3,0 180 0">2</option>
+      <option value="-3.26 1.7 1.756,0 0 0">3</option>
+    </select>
+    <button onclick="changeCameraPosition()">Set</button>
+  </div>
+  
+  <script>
+    function changeCameraPosition() {
+      // Get the selected option
+      var select = document.getElementById('camera-positions');
+      var selectedValue = select.value;
+      var values = selectedValue.split(',');
 
-      <!-- spectator camera? -->
-      <!-- add seaat number in gltf, check size -->
-      <!-- add lights -->
-      <!-- add ammo.js -->
+      // Extract position and rotation from the selected value
+      var newPosition = values[0];
+      var newRotation = values[1];
+
+      // Get the cameraRig entity
+      var cameraRigEl = document.getElementById('cameraRig');
+      // Set the new position and rotation
+      cameraRigEl.setAttribute('position', newPosition);
+      cameraRigEl.setAttribute('rotation', newRotation);
+      
+      // Get the camera entity
+      var cameraEl = document.getElementById('camera');
+      // Set the new position and rotation
+      cameraEl.removeAttribute('look-controls')
+      cameraEl.setAttribute('rotation', {x:0, y:0, z:0});
+      cameraEl.setAttribute('position', {x:0, y:0, z:0});
+      cameraEl.setAttribute('look-controls', '')
+    }
+  </script>
+  
+</body>
+
+</html>
       <!-- add static planes in walls -->
       <!-- add body to camera to avoid passing through walls -->
       <!-- add alert for instructions -->
       <!-- floor plan? -->
-
-    </a-scene>
-  </body>
-</html>
