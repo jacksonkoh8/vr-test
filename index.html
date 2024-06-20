@@ -5,83 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Physics/Biology Lab Layout</title>
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-orbit-controls@1.3.2/dist/aframe-orbit-controls.min.js"></script>
 </head>
 
 <body>
-  <a-scene>
-    <a-sky color="#000000"></a-sky>
-    <a-light type="ambient" color="white" position="0 1 0" intensity="1.8"></a-light>
+<!--   <div class="buttons">
+  <button class="position-selector" data-position="0.17 4.14 2.79">Position 1</button>
+  <button class="position-selector" data-position="3.48 3.57 0.15">Position 2</button>
+  <button class="position-selector" data-position="-2.89 -2.51 3.20">Position 3</button>
+</div> -->
   
+  <a-scene background="color: #ECECEC">
+    <a-light type="ambient" color="white" position="0 1 0" intensity="1.2"></a-light>
     <a-assets>
-       <a-asset-item id="test" src="test5.gltf"></a-asset-item>
+       <a-asset-item id="test" src="https://cdn.jsdelivr.net/gh/jacksonkoh8/vr-test@21e0c18ad26e26bca09a407aef86102e8f905f4e/test6.gltf"></a-asset-item>
     </a-assets>
-  
-    <a-entity gltf-model="#test" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity> 
-     
-<!--     <script>
-    AFRAME.registerComponent('log-rotation', {
-      tick: function () {
-        // Get the rotation of the entity the component is attached to
-        var position = this.el.getAttribute('position');
-        console.log('Camera position:', position);
-        var rotation = this.el.getAttribute('rotation');
-        console.log('Camera rotation:', rotation);
-      }
-    });
-    </script> -->
-
-<!--cannot use rotation directly together with look-controls-->
-    <a-entity id="cameraRig" position="0 8 10" rotation="-50 0 0">
-      <a-entity id="camera" camera spectator="false" look-controls wasd-controls="acceleration:100" log-rotation>
-      </a-entity>
-    </a-entity>
-
+  <a-entity gltf-model="#test" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity> 
+    <a-entity id="camera" camera look-controls="enabled: false" orbit-controls="target: 0 2 0; minDistance: 1; maxDistance: 10; initialPosition: 0 15 10; rotateSpeed: 0.5 panSpeed: 1.5 zoomSpeed: 1.5"></a-entity>
+    </a-scene>
   </a-scene>
-   
-  <div id="buttons">
-    <label for="camera-positions">Choose Seat:</label>
-    <select id="camera-positions">
-      <option value="0 8 10,-50 0 0">Top View</option>
-      <option value="-5.16 1.7 -4.7,0 121 0">1</option>
-      <option value="-2.88 1.7 -3,0 180 0">2</option>
-      <option value="-3.26 1.7 1.756,0 0 0">3</option>
-    </select>
-    <button onclick="changeCameraPosition()">Set</button>
-  </div>
-  
- <script>
-    function changeCameraPosition() {
-      // Get the selected option
-      var select = document.getElementById('camera-positions');
-      var selectedValue = select.value;
-      var values = selectedValue.split(',');
-
-      // Extract position and rotation from the selected value
-      var newPosition = values[0];
-      var newRotation = values[1];
-
-      // Get the cameraRig entity
-      var cameraRigEl = document.getElementById('cameraRig');
-      // Set the new position and rotation
-      cameraRigEl.setAttribute('position', newPosition);
-      cameraRigEl.setAttribute('rotation', newRotation);
-      
-      // Get the camera entity
-      var cameraEl = document.getElementById('camera');
-      // Set the new position and rotation
-      cameraEl.removeAttribute('look-controls')
-      cameraEl.setAttribute('rotation', {x:0, y:0, z:0});
-      cameraEl.setAttribute('position', {x:0, y:0, z:0});
-      cameraEl.setAttribute('look-controls', '')
-    }
-  </script>
-
 </body>
-</html>
-      <!-- why button doesn't show up on phone cause of VR mode? -->
-      <!-- can use orbit-controls? -->
-      <!-- wasd equivalent for VR phone? aframe-twoway-motion -->
-      <!-- add static planes in walls -->
-      <!-- add body to camera to avoid passing through walls -->
+      <!-- use button to switch seats? -->
       <!-- add alert for instructions -->
       <!-- floor plan? -->
