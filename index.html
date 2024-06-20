@@ -8,12 +8,12 @@
 </head>
 
 <body>
-  <a-scene xr-mode-ui="enabled: true">
+  <a-scene>
     <a-sky color="#000000"></a-sky>
     <a-light type="ambient" color="white" position="0 1 0" intensity="1.8"></a-light>
   
     <a-assets>
-       <a-asset-item id="test" src="https://cdn.jsdelivr.net/gh/jacksonkoh8/vr-test@accdde37f8d9ea2227d3066e85a3ad85e4b75f05/test3.gltf"></a-asset-item>
+       <a-asset-item id="test" src="test5.gltf"></a-asset-item>
     </a-assets>
   
     <a-entity gltf-model="#test" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity> 
@@ -32,7 +32,7 @@
 
 <!--cannot use rotation directly together with look-controls-->
     <a-entity id="cameraRig" position="0 8 10" rotation="-50 0 0">
-      <a-entity id="camera" camera spectator="false" look-controls wasd-controls="acceleration:100" log-rotation>
+      <a-entity id="camera" camera spectator="false" wasd-controls="acceleration:100" log-rotation>
       </a-entity>
     </a-entity>
 
