@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <a-scene>
+  <a-scene xr-mode-ui="enabled: true">
     <a-sky color="#000000"></a-sky>
     <a-light type="ambient" color="white" position="0 1 0" intensity="1.8"></a-light>
   
@@ -32,7 +32,7 @@
 
 <!--cannot use rotation directly together with look-controls-->
     <a-entity id="cameraRig" position="0 8 10" rotation="-50 0 0">
-      <a-entity id="camera" camera spectator="false" wasd-controls="acceleration:100" log-rotation>
+      <a-entity id="camera" camera spectator="false" look-controls wasd-controls="acceleration:100" log-rotation>
       </a-entity>
     </a-entity>
 
