@@ -1,14 +1,5 @@
 #buttons {
     position: fixed;
-    bottom: 20px; /* Distance from the bottom edge */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust horizontally to center */
-    /* display: flex; Use flexbox layout */
-    justify-content: center; /* Center contents horizontally */
-    align-items: center; /* Center contents vertically */
-    background: rgba(255, 255, 0, 0.8); /* Semi-transparent background */
-    padding: 10px; /* Some padding */
-    border-radius: 5px; /* Rounded corners */
     z-index: 1000000; /* High z-index to ensure it stays on top */
   }
 
