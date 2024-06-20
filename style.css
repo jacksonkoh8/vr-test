@@ -13,4 +13,9 @@
   }
 
 .a-enter-vr-button {
-    display: none !important; /* Hide the button */}
+    display: none !important; /* Hide the button */
+  }
+
+canvas {
+    z-index: 1;
+  }
